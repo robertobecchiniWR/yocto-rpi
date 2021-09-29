@@ -12,7 +12,7 @@ define bitbake
 		cd $(BDIR) ; \
 		source poky/oe-init-build-env ; \
 	fi ; \
-	bitbake $(2)
+	bitbake $(3) $(2)
 endef
 
 define bitbake-task
@@ -52,12 +52,12 @@ $(BDIR)/build: $(BDIR) $(LAYERS)
 
 images: $(BDIR)/build
 ifneq ($(IMAGES),)
-	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(IMAGES));)
+	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(IMAGES), "-u goggle");)
 endif
 
 containers: $(BDIR)/build
 ifneq ($(CONTAINERS),)
-	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(CONTAINERS));)
+	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(CONTAINERS), -u goggle);)
 endif
 
 # When entering bitbake shell, default MACHINE to the first in list
