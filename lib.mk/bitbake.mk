@@ -52,12 +52,12 @@ $(BDIR)/build: $(BDIR) $(LAYERS)
 
 images: $(BDIR)/build
 ifneq ($(IMAGES),)
-	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(IMAGES), "-g -utaskexp");)
+	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(IMAGES), "-g");)
 endif
 
 containers: $(BDIR)/build
 ifneq ($(CONTAINERS),)
-	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(CONTAINERS), "-g -utaskexp");)
+	$(foreach MACHINE,$(MACHINES),$(call bitbake,$(MACHINE),$(CONTAINERS), "-g");)
 endif
 
 # When entering bitbake shell, default MACHINE to the first in list
